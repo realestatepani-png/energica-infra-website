@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energica Infra — Renewable Energy Advisory & Aggregation Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g1: #07422C;
+  --g2: #0C6B47;
+  --g3: #1A9468;
+  --g4: #2DBF85;
+  --gl: #E2F5ED;
+  --gp: #F2FAF6;
+  --gold: #B8892A;
+  --gold-l: #FBF3E0;
+  --slate: #1C2B25;
+  --text1: #0F1C16;
+  --text2: #3D5449;
+  --text3: #7A9B8A;
+  --bg: #F6FAF8;
+  --white: #FFFFFF;
+  --border: #D3E8DC;
+  --border-l: #EBF5EF;
+  --red: #C0392B;
+  --red-l: #FBEAEA;
+  --blue: #1A5FA8;
+  --blue-l: #E4EEF9;
+  --amber: #7D5A00;
+  --amber-l: #FDF3D8;
+  --shadow: 0 2px 12px rgba(7,66,44,0.07);
+  --shadow-md: 0 6px 28px rgba(7,66,44,0.12);
+  --shadow-lg: 0 16px 56px rgba(7,66,44,0.14);
+  --r: 14px;
+  --r-sm: 8px;
+  --font: 'Outfit', sans-serif;
+  --serif: 'Cormorant Garamond', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text1); -webkit-font-smoothing: antialiased; }
+
+/* ═══════════════════════════════════
+   NAV
+═══════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-l);
+  height: 64px;
+  display: flex; align-items: center; padding: 0 32px;
+  gap: 0;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--serif); font-size: 22px; font-weight: 600;
+  color: var(--g1); letter-spacing: -0.01em;
+  text-decoration: none; margin-right: 40px; flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 36px; height: 36px; background: var(--g1);
+  border-radius: 9px; display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-mark svg { width: 18px; height: 18px; }
+.nav-items { display: flex; gap: 0; flex: 1; height: 64px; }
+.nav-item {
+  padding: 0 15px; font-size: 13.5px; font-weight: 400; color: var(--text2);
+  border: none; background: none; cursor: pointer; height: 100%;
+  border-bottom: 2px solid transparent; font-family: var(--font);
+  transition: color 0.15s; white-space: nowrap;
+  display: flex; align-items: center;
+}
+.nav-item.active { color: var(--g2); border-bottom-color: var(--g3); font-weight: 500; }
+.nav-item:hover:not(.active) { color: var(--g1); }
+.nav-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.nav-cta {
+  padding: 9px 22px; background: var(--g1); color: #fff;
+  border: none; border-radius: var(--r-sm); font-family: var(--font);
+  font-size: 13.5px; font-weight: 500; cursor: pointer;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--g2); }
+.nav-login {
+  padding: 9px 18px; background: none; color: var(--g1);
+  border: 1.5px solid var(--border); border-radius: var(--r-sm);
+  font-family: var(--font); font-size: 13.5px; font-weight: 500; cursor: pointer;
+  transition: all 0.15s;
+}
+.nav-login:hover { background: var(--gp); }
+
+/* ═══════════════════════════════════
+   PAGE SYSTEM
+═══════════════════════════════════ */
+.page { display: none; padding-top: 64px; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════════
+   HOME PAGE
+═══════════════════════════════════ */
+.hero {
+  background: linear-gradient(145deg, var(--g1) 0%, #0F5C3A 50%, #197A52 100%);
+  padding: 100px 80px 90px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 20%, rgba(45,191,133,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(184,137,42,0.08) 0%, transparent 50%);
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M0 0h80v80H0z'/%3E%3Cpath d='M40 0L0 40h80z' fill-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+.hero-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 14px; border-radius: 20px; margin-bottom: 28px;
+  font-size: 12px; color: rgba(255,255,255,0.8); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.hero-label-dot { width: 6px; height: 6px; background: var(--g4); border-radius: 50%; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+.hero-title {
+  font-family: var(--serif); font-size: 62px; line-height: 1.08;
+  color: #fff; margin-bottom: 22px; letter-spacing: -0.02em; font-weight: 500;
+}
+.hero-title em { font-style: italic; color: rgba(255,255,255,0.65); }
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7;
+  max-width: 600px; margin-bottom: 42px; font-weight: 300;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-btn-primary {
+  padding: 14px 32px; background: #fff; color: var(--g1);
+  border: none; border-radius: var(--r-sm); font-family: var(--font);
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: all 0.15s; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.hero-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(0,0,0,0.2); }
+.hero-btn-sec {
+  padding: 14px 32px; background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.25); color: #fff;
+  border-radius: var(--r-sm); font-family: var(--font);
+  font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+}
+.hero-btn-sec:hover { background: rgba(255,255,255,0.18); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r); overflow: hidden; margin-top: 64px;
+}
+.hs-item {
+  padding: 22px 28px; background: rgba(255,255,255,0.04);
+}
+.hs-val {
+  font-family: var(--serif); font-size: 36px; color: #fff; font-weight: 500;
+  line-height: 1; margin-bottom: 4px; letter-spacing: -0.02em;
+}
+.hs-label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Services strip */
+.services-strip { padding: 80px 80px; background: var(--white); }
+.services-strip .inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; color: var(--g3); text-transform: uppercase;
+  letter-spacing: 0.12em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.section-eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--g3); }
+.section-title {
+  font-family: var(--serif); font-size: 42px; color: var(--text1);
+  letter-spacing: -0.02em; margin-bottom: 14px; line-height: 1.15; font-weight: 500;
+}
+.section-sub { font-size: 16px; color: var(--text2); line-height: 1.65; max-width: 560px; font-weight: 300; }
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 52px;
+}
+.svc-card {
+  background: var(--bg); border: 1px solid var(--border-l);
+  border-radius: var(--r); padding: 28px; cursor: pointer;
+  transition: all 0.2s; position: relative; overflow: hidden;
+}
+.svc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--g3); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.2s;
+}
+.svc-card:hover { background: var(--white); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-icon {
+  width: 44px; height: 44px; border-radius: 10px; background: var(--gl);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 16px;
+}
+.svc-title { font-size: 16px; font-weight: 600; color: var(--text1); margin-bottom: 8px; }
+.svc-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; font-weight: 300; }
+.svc-arrow { font-size: 18px; color: var(--g3); margin-top: 14px; display: block; }
+
+/* Why us */
+.why-section { padding: 80px; background: var(--bg); }
+.why-section .inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.why-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+.why-item { display: flex; gap: 16px; }
+.why-num {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--g1);
+  color: #fff; font-size: 12px; font-weight: 600; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; margin-top: 2px;
+}
+.why-item-title { font-size: 15px; font-weight: 600; color: var(--text1); margin-bottom: 4px; }
+.why-item-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; font-weight: 300; }
+.why-visual {
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  border-radius: 20px; padding: 40px; color: #fff;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.wv-card {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px; padding: 20px;
+}
+.wv-val { font-family: var(--serif); font-size: 30px; font-weight: 500; margin-bottom: 4px; }
+.wv-label { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* CTA Banner */
+.cta-banner {
+  background: var(--gold-l); border-top: 1px solid #E8D5A0; border-bottom: 1px solid #E8D5A0;
+  padding: 60px 80px; text-align: center;
+}
+.cta-banner .inner { max-width: 640px; margin: 0 auto; }
+.cta-banner-title { font-family: var(--serif); font-size: 36px; color: var(--text1); margin-bottom: 12px; font-weight: 500; }
+.cta-banner-sub { font-size: 16px; color: var(--text2); margin-bottom: 28px; font-weight: 300; }
+.cta-banner-btn {
+  padding: 14px 36px; background: var(--g1); color: #fff; border: none;
+  border-radius: var(--r-sm); font-family: var(--font); font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.cta-banner-btn:hover { background: var(--g2); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════
+   DASHBOARD / PORTFOLIO PAGE
+═══════════════════════════════════ */
+.dash-page { padding: 36px 36px 60px; }
+.dash-page .inner { max-width: 1360px; margin: 0 auto; }
+
+.page-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.page-header-title { font-family: var(--serif); font-size: 32px; color: var(--text1); letter-spacing: -0.02em; font-weight: 500; }
+.page-header-sub { font-size: 14px; color: var(--text2); margin-top: 4px; font-weight: 300; }
+
+/* KPIs */
+.kpi-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; margin-bottom: 24px; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r); padding: 18px 20px; box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+}
+.kpi-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--g3); border-radius: 3px 3px 0 0; }
+.kpi-accent.gold { background: var(--gold); }
+.kpi-accent.blue { background: var(--blue); }
+.kpi-accent.red { background: var(--red); }
+.kpi-accent.slate { background: var(--slate); }
+.kpi-label { font-size: 11.5px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
+.kpi-val { font-family: var(--serif); font-size: 30px; color: var(--text1); font-weight: 500; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+.kpi-sub { font-size: 11px; color: var(--text3); }
+.kpi-badge { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; margin-top: 6px; }
+.badge-g { background: var(--gl); color: var(--g2); }
+.badge-r { background: var(--red-l); color: var(--red); }
+.badge-b { background: var(--blue-l); color: var(--blue); }
+.badge-a { background: var(--amber-l); color: var(--amber); }
+
+/* Dashboard grid */
+.dash-main { display: grid; grid-template-columns: 1fr 380px; gap: 18px; margin-bottom: 18px; }
+.dash-panel {
+  background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden;
+}
+.dp-head {
+  padding: 14px 20px; border-bottom: 1px solid var(--border-l);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dp-title { font-size: 14px; font-weight: 600; color: var(--text1); }
+.dp-sub { font-size: 12px; color: var(--text3); }
+.dp-badge { font-size: 11px; padding: 2px 10px; border-radius: 20px; font-weight: 600; }
+
+/* Bar chart */
+.chart-area { padding: 20px; }
+.bar-chart-wrap { display: flex; align-items: flex-end; gap: 14px; height: 170px; }
+.bcw-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bcw-bars { display: flex; gap: 5px; align-items: flex-end; width: 100%; }
+.bcw-bar { flex: 1; border-radius: 5px 5px 0 0; min-height: 4px; cursor: pointer; transition: opacity 0.15s; }
+.bcw-bar:hover { opacity: 0.75; }
+.bar-sol { background: linear-gradient(to top, #C87800, #F5A828); }
+.bar-win { background: linear-gradient(to top, #1246A0, #2485F0); }
+.bar-hyb { background: linear-gradient(to top, var(--g2), var(--g4)); }
+.bcw-label { font-size: 11px; color: var(--text3); }
+.chart-legend { display: flex; gap: 16px; margin-top: 14px; padding: 0 20px 16px; }
+.cl-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.cl-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* State bars */
+.state-bars-wrap { padding: 16px 20px; }
+.sb-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.sb-row:last-child { margin-bottom: 0; }
+.sb-name { font-size: 12.5px; color: var(--text2); width: 80px; flex-shrink: 0; }
+.sb-track { flex: 1; height: 7px; background: var(--border-l); border-radius: 20px; overflow: hidden; }
+.sb-fill { height: 100%; border-radius: 20px; background: var(--g3); }
+.sb-mw { font-size: 12px; font-weight: 500; color: var(--text1); width: 60px; text-align: right; flex-shrink: 0; }
+
+/* Donut */
+.donut-area { padding: 16px 20px; display: flex; align-items: center; gap: 20px; }
+.donut-legend-list { display: flex; flex-direction: column; gap: 12px; }
+.dll-item { display: flex; align-items: center; gap: 9px; }
+.dll-color { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.dll-label { font-size: 12.5px; color: var(--text2); flex: 1; }
+.dll-val { font-size: 13px; font-weight: 600; color: var(--text1); }
+
+/* Bottom row */
+.dash-bottom { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 18px; }
+
+/* Activity feed */
+.activity-feed { }
+.af-item { padding: 12px 18px; border-bottom: 1px solid var(--border-l); display: flex; gap: 10px; align-items: flex-start; }
+.af-item:last-child { border-bottom: none; }
+.af-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.af-content { flex: 1; }
+.af-text { font-size: 13px; color: var(--text1); line-height: 1.45; }
+.af-text strong { font-weight: 500; }
+.af-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.af-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--g3); flex-shrink: 0; margin-top: 5px; }
+
+/* Notification flow */
+.notif-flow { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.nf-step { display: flex; gap: 12px; align-items: flex-start; }
+.nf-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.nf-body { }
+.nf-title { font-size: 13px; font-weight: 500; color: var(--text1); }
+.nf-desc { font-size: 11.5px; color: var(--text2); margin-top: 2px; line-height: 1.5; }
+
+/* Flash cards */
+.flash-section { margin-top: 24px; }
+.filter-bar { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+.search-field {
+  flex: 1; min-width: 200px; max-width: 260px;
+  padding: 9px 14px; border: 1.5px solid var(--border); border-radius: var(--r-sm);
+  font-family: var(--font); font-size: 13px; color: var(--text1); background: var(--white); outline: none;
+}
+.search-field:focus { border-color: var(--g3); }
+.fchip {
+  padding: 7px 15px; border: 1.5px solid var(--border); border-radius: 20px;
+  font-size: 13px; cursor: pointer; background: var(--white); color: var(--text2);
+  font-family: var(--font); font-weight: 400; transition: all 0.15s;
+}
+.fchip.on { background: var(--gl); border-color: var(--g3); color: var(--g2); font-weight: 500; }
+.flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 16px; }
+.flash-card {
+  background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r); overflow: hidden; cursor: pointer;
+  box-shadow: var(--shadow); transition: all 0.2s;
+}
+.flash-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--border); }
+.fc-stripe { height: 4px; }
+.fc-body { padding: 16px 18px; }
+.fc-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 9px; border-radius: 20px; margin-bottom: 10px; font-weight: 600; letter-spacing: 0.02em; }
+.tag-s { background: var(--amber-l); color: var(--amber); }
+.tag-w { background: var(--blue-l); color: var(--blue); }
+.tag-h { background: var(--gl); color: var(--g2); }
+.fc-title { font-size: 15px; font-weight: 500; color: var(--text1); margin-bottom: 12px; line-height: 1.4; }
+.fc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.fcs-label { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+.fcs-val { font-size: 13.5px; font-weight: 500; color: var(--text1); }
+.fc-div { height: 1px; background: var(--border-l); margin: 10px 0; }
+.fc-meta { display: flex; gap: 6px; align-items: center; font-size: 11.5px; color: var(--text3); margin-bottom: 12px; }
+.masked { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text3); background: var(--bg); border-radius: 4px; padding: 2px 7px; font-family: monospace; }
+.interest-btn {
+  width: 100%; padding: 10px; background: var(--gl); color: var(--g2);
+  border: 1.5px solid rgba(26,148,104,0.3); border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500; cursor: pointer; font-family: var(--font); transition: all 0.15s;
+}
+.interest-btn:hover { background: #c3ecd9; }
+.interest-btn.sent { background: var(--bg); color: var(--text3); border-color: var(--border-l); cursor: default; }
+
+/* Admin panel */
+.admin-section { margin-top: 28px; }
+.admin-grid-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; }
+.lead-list-item {
+  padding: 13px 18px; border-bottom: 1px solid var(--border-l);
+  display: flex; gap: 11px; align-items: center; cursor: pointer; transition: background 0.1s;
+}
+.lead-list-item:hover { background: var(--gp); }
+.lead-list-item:last-child { border-bottom: none; }
+.l-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.l-info { flex: 1; }
+.l-name { font-size: 13.5px; font-weight: 500; color: var(--text1); }
+.l-opp { font-size: 11.5px; color: var(--text2); margin-top: 2px; }
+.l-time { font-size: 11px; color: var(--text3); flex-shrink: 0; }
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--g3); position: relative; }
+.pulse-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 1.5px solid var(--g3); opacity: 0; animation: rd 1.5s ease-out infinite; }
+@keyframes rd { 0%{transform:scale(0.8);opacity:0.8}100%{transform:scale(2.2);opacity:0} }
+.unmasked-area { padding: 16px 18px; }
+.um-empty { text-align: center; padding: 2rem; color: var(--text3); font-size: 13px; }
+.um-title { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+.um-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border-l); }
+.um-row:last-child { border-bottom: none; }
+.um-key { font-size: 12px; color: var(--text2); }
+.um-val { font-size: 12px; color: var(--blue); font-weight: 500; text-align: right; max-width: 55%; }
+
+/* ═══════════════════════════════════
+   SERVICE PAGES (shared layout)
+═══════════════════════════════════ */
+.svc-page { padding: 0; }
+.svc-hero {
+  padding: 72px 80px 64px;
+  background: linear-gradient(130deg, var(--g1) 0%, #0E5E3C 100%);
+  position: relative; overflow: hidden;
+}
+.svc-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(45,191,133,0.1) 0%, transparent 60%);
+}
+.svc-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.svc-hero-eyebrow {
+  font-size: 11px; font-weight: 600; color: var(--g4); text-transform: uppercase;
+  letter-spacing: 0.12em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+}
+.svc-hero-eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--g4); }
+.svc-hero-title { font-family: var(--serif); font-size: 52px; color: #fff; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 18px; line-height: 1.1; }
+.svc-hero-desc { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 640px; font-weight: 300; }
+
+.svc-body { max-width: 1200px; margin: 0 auto; padding: 60px 80px; }
+
+.svc-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-bottom: 60px; }
+.svc-intro-text { font-size: 16px; color: var(--text2); line-height: 1.75; font-weight: 300; }
+.svc-intro-text p { margin-bottom: 18px; }
+.svc-intro-text p:last-child { margin-bottom: 0; }
+
+.svc-highlights { display: flex; flex-direction: column; gap: 14px; }
+.svc-hl-card {
+  background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r-sm); padding: 18px 20px; box-shadow: var(--shadow);
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.svc-hl-icon { font-size: 20px; flex-shrink: 0; width: 40px; height: 40px; background: var(--gl); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.svc-hl-title { font-size: 14px; font-weight: 600; color: var(--text1); margin-bottom: 4px; }
+.svc-hl-desc { font-size: 13px; color: var(--text2); line-height: 1.55; font-weight: 300; }
+
+.svc-scope-title {
+  font-family: var(--serif); font-size: 30px; color: var(--text1);
+  font-weight: 500; margin-bottom: 28px; letter-spacing: -0.01em;
+}
+.scope-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.scope-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px; background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r-sm); box-shadow: var(--shadow);
+}
+.scope-check { color: var(--g3); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.scope-text { font-size: 13.5px; color: var(--text1); line-height: 1.5; font-weight: 400; }
+
+.process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 40px; }
+.ps-step {
+  background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r); padding: 22px 18px; box-shadow: var(--shadow); text-align: center;
+  position: relative;
+}
+.ps-step:not(:last-child)::after {
+  content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+  font-size: 16px; color: var(--text3); z-index: 1;
+}
+.ps-num {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--g1);
+  color: #fff; font-size: 13px; font-weight: 600; display: flex;
+  align-items: center; justify-content: center; margin: 0 auto 12px;
+}
+.ps-title { font-size: 13.5px; font-weight: 600; color: var(--text1); margin-bottom: 6px; }
+.ps-desc { font-size: 12px; color: var(--text2); line-height: 1.55; font-weight: 300; }
+
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+.contact-page { padding: 64px 80px; }
+.contact-page .inner { max-width: 1000px; margin: 0 auto; }
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; }
+.contact-form-section { }
+.cf-title { font-family: var(--serif); font-size: 36px; color: var(--text1); font-weight: 500; margin-bottom: 8px; letter-spacing: -0.02em; }
+.cf-sub { font-size: 15px; color: var(--text2); margin-bottom: 32px; font-weight: 300; }
+.cf-field { margin-bottom: 18px; }
+.cf-label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+.cf-input {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: var(--r-sm); font-family: var(--font); font-size: 14px;
+  color: var(--text1); background: var(--white); outline: none; transition: border-color 0.15s;
+}
+.cf-input:focus { border-color: var(--g3); box-shadow: 0 0 0 3px rgba(26,148,104,0.1); }
+.cf-textarea { min-height: 120px; resize: vertical; }
+.cf-btn {
+  padding: 13px 32px; background: var(--g1); color: #fff; border: none;
+  border-radius: var(--r-sm); font-family: var(--font); font-size: 14.5px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.cf-btn:hover { background: var(--g2); transform: translateY(-1px); }
+.contact-info { }
+.ci-card {
+  background: var(--g1); border-radius: var(--r); padding: 36px; color: #fff; margin-bottom: 20px;
+}
+.ci-title { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 24px; }
+.ci-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+.ci-item:last-child { margin-bottom: 0; }
+.ci-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.ci-info-title { font-size: 12px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+.ci-info-val { font-size: 14px; color: rgba(255,255,255,0.9); }
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+.footer {
+  background: var(--slate); padding: 56px 80px 28px; color: rgba(255,255,255,0.7);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+.footer-brand { }
+.footer-logo { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.footer-logo-mark { width: 32px; height: 32px; background: var(--g3); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.footer-logo-text { font-family: var(--serif); font-size: 18px; color: #fff; font-weight: 500; }
+.footer-desc { font-size: 13.5px; line-height: 1.7; font-weight: 300; max-width: 280px; }
+.footer-col-title { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link { font-size: 13.5px; color: rgba(255,255,255,0.6); cursor: pointer; transition: color 0.15s; text-decoration: none; background: none; border: none; font-family: var(--font); text-align: left; }
+.footer-link:hover { color: var(--g4); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; }
+.footer-bottom-right { display: flex; gap: 20px; }
+
+/* ═══════════════════════════════════
+   UPLOAD PAGE
+═══════════════════════════════════ */
+.upload-page-wrap { padding: 40px 80px 60px; max-width: 1200px; margin: 0 auto; }
+.up-header { margin-bottom: 32px; }
+.up-form-section {
+  background: var(--white); border: 1px solid var(--border-l);
+  border-radius: var(--r); padding: 28px 32px; margin-bottom: 18px; box-shadow: var(--shadow);
+}
+.up-sec-title { font-size: 12px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+.up-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.up-field label { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 5px; }
+.up-field input { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: var(--r-sm); font-family: var(--font); font-size: 13px; color: var(--text1); background: var(--bg); outline: none; transition: border-color 0.15s; }
+.up-field input:focus { border-color: var(--g3); background: var(--white); }
+.chip-pub { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: var(--gl); color: var(--g2); font-weight: 600; }
+.chip-priv { font-size: 10px; padding: 1px 6px; border-radius: 3px; background: var(--red-l); color: var(--red); font-weight: 600; }
+.up-actions { display: flex; gap: 12px; margin-top: 22px; }
+.up-btn-primary { padding: 12px 28px; background: var(--g1); color: #fff; border: none; border-radius: var(--r-sm); font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.up-btn-primary:hover { background: var(--g2); }
+.up-btn-sec { padding: 12px 22px; background: var(--bg); color: var(--text2); border: 1.5px solid var(--border); border-radius: var(--r-sm); font-family: var(--font); font-size: 14px; font-weight: 500; cursor: pointer; }
+.up-confirm { display: none; margin-top: 14px; font-size: 13px; color: var(--g2); background: var(--gl); padding: 10px 14px; border-radius: var(--r-sm); border: 1px solid rgba(26,148,104,0.25); }
+
+/* Animations */
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.fade-up { animation: fadeUp 0.4s ease forwards; }
+.d1{animation-delay:.06s;opacity:0} .d2{animation-delay:.12s;opacity:0} .d3{animation-delay:.18s;opacity:0} .d4{animation-delay:.24s;opacity:0} .d5{animation-delay:.30s;opacity:0}
+
+/* Utility */
+.text-center { text-align: center; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.divider { height: 1px; background: var(--border-l); margin: 48px 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <a class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2L3 7.5v5.5L10 18l7-5V7.5L10 2z" stroke="white" stroke-width="1.5" fill="none"/>
+        <path d="M10 6v5l3 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    Energica Infra
+  </a>
+  <div class="nav-items">
+    <button class="nav-item active" onclick="showPage('home',this)">Home</button>
+    <button class="nav-item" onclick="showPage('portfolio',this)">Portfolio & Dashboard</button>
+    <button class="nav-item" onclick="showPage('pmc',this)">PMC Services</button>
+    <button class="nav-item" onclick="showPage('finance',this)">Project Finance</button>
+    <button class="nav-item" onclick="showPage('ma',this)">M&A Advisory</button>
+    <button class="nav-item" onclick="showPage('bess',this)">BESS / Energy Sizing</button>
+    <button class="nav-item" onclick="showPage('scada',this)">SCADA / O&M</button>
+    <button class="nav-item" onclick="showPage('contact',this)">Contact</button>
+  </div>
+  <div class="nav-right">
+    <button class="nav-login" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">Investor Login</button>
+    <button class="nav-cta" onclick="showPage('contact',document.querySelectorAll('.nav-item')[7])">Get in Touch</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-label"><div class="hero-label-dot"></div> India's Renewable Energy Platform</div>
+      <h1 class="hero-title">
+        Where India's clean energy<br>
+        <em>deal flow</em> gets structured.
+      </h1>
+      <p class="hero-sub">Energica Infra aggregates, structures, and facilitates renewable energy projects across India — connecting sub-aggregators, institutional investors, and EPC partners on a single, trusted platform.</p>
+      <div class="hero-btns">
+        <button class="hero-btn-primary" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">Explore Opportunities →</button>
+        <button class="hero-btn-sec" onclick="showPage('pmc',document.querySelectorAll('.nav-item')[2])">Our Services</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hs-item"><div class="hs-val">2.4 GW</div><div class="hs-label">Capacity Aggregated</div></div>
+        <div class="hs-item"><div class="hs-val">₹3,100 Cr</div><div class="hs-label">Active Deal Pipeline</div></div>
+        <div class="hs-item"><div class="hs-val">48</div><div class="hs-label">Live Projects</div></div>
+        <div class="hs-item"><div class="hs-val">12 States</div><div class="hs-label">Operational Presence</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services strip -->
+  <div class="services-strip">
+    <div class="inner">
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">End-to-end advisory<br>for renewable energy</h2>
+      <p class="section-sub">From project identification and structuring to commissioning, O&M, and investor exits — Energica Infra is your single-window partner.</p>
+      <div class="services-grid">
+        <div class="svc-card" onclick="showPage('pmc',document.querySelectorAll('.nav-item')[2])">
+          <div class="svc-icon">🏗️</div>
+          <div class="svc-title">PMC Services</div>
+          <div class="svc-desc">Total project management, feasibility studies, DPR preparation, bid documents, EPC contract management, and commissioning oversight for solar, wind & hybrid projects.</div>
+          <span class="svc-arrow">→</span>
+        </div>
+        <div class="svc-card" onclick="showPage('finance',document.querySelectorAll('.nav-item')[3])">
+          <div class="svc-icon">🏦</div>
+          <div class="svc-title">Project Finance</div>
+          <div class="svc-desc">Structured debt and equity solutions for renewable energy projects — from DFI lending and green bonds to co-investments and syndication across India's capital markets.</div>
+          <span class="svc-arrow">→</span>
+        </div>
+        <div class="svc-card" onclick="showPage('ma',document.querySelectorAll('.nav-item')[4])">
+          <div class="svc-icon">🤝</div>
+          <div class="svc-title">M&A Advisory</div>
+          <div class="svc-desc">Buy-side and sell-side advisory for renewable asset acquisitions, platform consolidations, platform exits, and cross-border transactions in the energy sector.</div>
+          <span class="svc-arrow">→</span>
+        </div>
+        <div class="svc-card" onclick="showPage('bess',document.querySelectorAll('.nav-item')[5])">
+          <div class="svc-icon">🔋</div>
+          <div class="svc-title">BESS & Energy Sizing</div>
+          <div class="svc-desc">Battery Energy Storage System design, techno-economic analysis, round-trip efficiency modelling, and optimal sizing for hybrid renewable configurations.</div>
+          <span class="svc-arrow">→</span>
+        </div>
+        <div class="svc-card" onclick="showPage('scada',document.querySelectorAll('.nav-item')[6])">
+          <div class="svc-icon">📡</div>
+          <div class="svc-title">SCADA & O&M Advisory</div>
+          <div class="svc-desc">Remote monitoring, SCADA integration, performance analytics, preventive maintenance protocols, and operational advisory to maximise generation and minimise downtime.</div>
+          <span class="svc-arrow">→</span>
+        </div>
+        <div class="svc-card" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">
+          <div class="svc-icon">📊</div>
+          <div class="svc-title">Deal Aggregation Platform</div>
+          <div class="svc-desc">A secure, role-gated marketplace connecting sub-aggregators and investors. Curated flash cards, privacy-masked sensitive data, and real-time lead management.</div>
+          <span class="svc-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why us -->
+  <div class="why-section">
+    <div class="inner">
+      <div>
+        <div class="section-eyebrow">Why Energica Infra</div>
+        <h2 class="section-title">Trusted by developers,<br>preferred by investors.</h2>
+        <p class="section-sub">Our deep sectoral expertise, pan-India network, and technology-first approach create a differentiated advisory platform.</p>
+        <div class="why-list">
+          <div class="why-item"><div class="why-num">1</div><div><div class="why-item-title">End-to-End Lifecycle Coverage</div><div class="why-item-desc">We support projects from greenfield site identification through financial close, EPC execution, commissioning, and long-term O&M advisory — eliminating fragmented handoffs.</div></div></div>
+          <div class="why-item"><div class="why-num">2</div><div><div class="why-item-title">Privacy-First Deal Platform</div><div class="why-item-desc">Sensitive project data — land records, survey nos., owner details, and approval IDs — is masked from investors until admin-controlled disclosure, protecting all parties.</div></div></div>
+          <div class="why-item"><div class="why-num">3</div><div><div class="why-item-title">Curated, Diligenced Opportunities</div><div class="why-item-desc">Every project listing undergoes internal vetting for connectivity status, land title clarity, and PPA viability before appearing on our platform — saving investors' time and risk exposure.</div></div></div>
+          <div class="why-item"><div class="why-num">4</div><div><div class="why-item-title">Pan-India Regulatory Intelligence</div><div class="why-item-desc">State-specific knowledge across RUVNL, GETCO, MPPTCL, APTRANSCO, KPTCL and more — our team navigates LTOA, CTU, and ISTS approval processes on your behalf.</div></div></div>
+        </div>
+      </div>
+      <div class="why-visual">
+        <div class="wv-card"><div class="wv-val">2.4 GW</div><div class="wv-label">Projects Managed</div></div>
+        <div class="wv-card"><div class="wv-val">₹3,100 Cr</div><div class="wv-label">Deal Pipeline</div></div>
+        <div class="wv-card"><div class="wv-val">16</div><div class="wv-label">Sub-Aggregators</div></div>
+        <div class="wv-card"><div class="wv-val">12</div><div class="wv-label">States Active</div></div>
+        <div class="wv-card" style="grid-column:span 2"><div class="wv-val">Solar · Wind · Hybrid · BESS</div><div class="wv-label">Technologies Covered</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-banner">
+    <div class="inner">
+      <div class="cta-banner-title">Ready to explore India's renewable pipeline?</div>
+      <p class="cta-banner-sub">Join our platform as an investor, sub-aggregator, or EPC partner. Access curated deal flow with full advisory support.</p>
+      <button class="cta-banner-btn" onclick="showPage('contact',document.querySelectorAll('.nav-item')[7])">Schedule a Conversation →</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-mark">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L3 7.5v5.5L10 18l7-5V7.5L10 2z" stroke="white" stroke-width="1.5" fill="none"/><path d="M10 6v5l3 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span class="footer-logo-text">Energica Infra</span>
+        </div>
+        <p class="footer-desc">India's integrated renewable energy advisory and deal aggregation platform — connecting developers, investors, and EPC partners across solar, wind, and hybrid projects.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <button class="footer-link" onclick="showPage('pmc',document.querySelectorAll('.nav-item')[2])">PMC Services</button>
+          <button class="footer-link" onclick="showPage('finance',document.querySelectorAll('.nav-item')[3])">Project Finance</button>
+          <button class="footer-link" onclick="showPage('ma',document.querySelectorAll('.nav-item')[4])">M&A Advisory</button>
+          <button class="footer-link" onclick="showPage('bess',document.querySelectorAll('.nav-item')[5])">BESS / Energy Sizing</button>
+          <button class="footer-link" onclick="showPage('scada',document.querySelectorAll('.nav-item')[6])">SCADA / O&M</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <button class="footer-link" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">Opportunities</button>
+          <button class="footer-link" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">Dashboard</button>
+          <button class="footer-link" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">Admin Panel</button>
+          <button class="footer-link" onclick="showPage('portfolio',document.querySelectorAll('.nav-item')[1])">Upload Project</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <button class="footer-link" onclick="showPage('contact',document.querySelectorAll('.nav-item')[7])">About Us</button>
+          <button class="footer-link" onclick="showPage('contact',document.querySelectorAll('.nav-item')[7])">Contact</button>
+          <button class="footer-link">Privacy Policy</button>
+          <button class="footer-link">Terms of Use</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Energica Infra Pvt. Ltd. All rights reserved.</span>
+      <div class="footer-bottom-right">
+        <span>CIN: U40100GJ2024PTC000000</span>
+        <span>admin@energicainfra.com</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PORTFOLIO & DASHBOARD PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-portfolio">
+  <!-- Sub-tabs -->
+  <div style="background:var(--white);border-bottom:1px solid var(--border-l);padding:0 36px;display:flex;gap:0;">
+    <button class="nav-item active" id="ptab-dash" onclick="switchPortfolioTab('dash',this)" style="height:52px;">📊 Dashboard</button>
+    <button class="nav-item" id="ptab-opp" onclick="switchPortfolioTab('opp',this)" style="height:52px;">🌿 Opportunities</button>
+    <button class="nav-item" id="ptab-admin" onclick="switchPortfolioTab('admin',this)" style="height:52px;">🔐 Admin Panel</button>
+    <button class="nav-item" id="ptab-upload" onclick="switchPortfolioTab('upload',this)" style="height:52px;">⬆ Upload Project</button>
+  </div>
+
+  <!-- DASHBOARD TAB -->
+  <div id="ptab-content-dash" class="dash-page">
+    <div class="inner">
+      <div class="page-header">
+        <div>
+          <div class="page-header-title">Platform Dashboard</div>
+          <div class="page-header-sub" id="dash-date-line">Live overview · energicainfra.com</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <span class="dp-badge" style="background:var(--gl);color:var(--g2);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;">● Live</span>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card fade-up d1"><div class="kpi-accent"></div><div class="kpi-label">Total Capacity Listed</div><div class="kpi-val">2.4 <span style="font-size:18px;color:var(--text2)">GW</span></div><div class="kpi-sub">Across 48 projects</div><div class="kpi-badge badge-g">↑ 12% QoQ</div></div>
+        <div class="kpi-card fade-up d2"><div class="kpi-accent gold"></div><div class="kpi-label">Deal Pipeline Value</div><div class="kpi-val" style="font-size:24px;">₹3,100 <span style="font-size:15px;color:var(--text2)">Cr</span></div><div class="kpi-sub">Active opportunities</div><div class="kpi-badge badge-g">↑ 8% MoM</div></div>
+        <div class="kpi-card fade-up d3"><div class="kpi-accent blue"></div><div class="kpi-label">Active Leads</div><div class="kpi-val">34</div><div class="kpi-sub">12 pending review</div><div class="kpi-badge badge-b">IMs sent: 22</div></div>
+        <div class="kpi-card fade-up d4"><div class="kpi-accent red"></div><div class="kpi-label">Sub-Aggregators</div><div class="kpi-val">16</div><div class="kpi-sub">Contributing partners</div><div class="kpi-badge badge-g">3 new this month</div></div>
+        <div class="kpi-card fade-up d5"><div class="kpi-accent slate"></div><div class="kpi-label">Avg. PPA Tariff</div><div class="kpi-val" style="font-size:24px;">₹3.08<span style="font-size:14px;color:var(--text2)">/u</span></div><div class="kpi-sub">Across all listings</div><div class="kpi-badge badge-a">Range: 2.80–3.50</div></div>
+      </div>
+
+      <!-- Main charts row -->
+      <div class="dash-main">
+        <div class="dash-panel">
+          <div class="dp-head">
+            <div><div class="dp-title">Capacity by Technology & Quarter</div><div class="dp-sub">MW aggregated per type · FY 2024–25</div></div>
+          </div>
+          <div class="chart-area">
+            <div class="bar-chart-wrap" id="main-bar-chart"></div>
+          </div>
+          <div class="chart-legend">
+            <div class="cl-item"><div class="cl-dot" style="background:#F5A828"></div>Solar</div>
+            <div class="cl-item"><div class="cl-dot" style="background:#2485F0"></div>Wind</div>
+            <div class="cl-item"><div class="cl-dot" style="background:#1A9468"></div>Hybrid</div>
+          </div>
+        </div>
+        <div>
+          <div class="dash-panel" style="margin-bottom:16px;">
+            <div class="dp-head"><div class="dp-title">Portfolio by State</div><div class="dp-sub">MW share</div></div>
+            <div class="state-bars-wrap">
+              <div class="sb-row"><div class="sb-name">Rajasthan</div><div class="sb-track"><div class="sb-fill" style="width:72%"></div></div><div class="sb-mw">820 MW</div></div>
+              <div class="sb-row"><div class="sb-name">Gujarat</div><div class="sb-track"><div class="sb-fill" style="width:55%;background:#2485F0"></div></div><div class="sb-mw">620 MW</div></div>
+              <div class="sb-row"><div class="sb-name">MP</div><div class="sb-track"><div class="sb-fill" style="width:38%;background:#1A9468"></div></div><div class="sb-mw">430 MW</div></div>
+              <div class="sb-row"><div class="sb-name">AP</div><div class="sb-track"><div class="sb-fill" style="width:32%;background:#F5A828"></div></div><div class="sb-mw">360 MW</div></div>
+              <div class="sb-row"><div class="sb-name">Karnataka</div><div class="sb-track"><div class="sb-fill" style="width:16%;background:#C0392B"></div></div><div class="sb-mw">190 MW</div></div>
+            </div>
+          </div>
+          <div class="dash-panel">
+            <div class="dp-head"><div class="dp-title">Technology Mix</div></div>
+            <div class="donut-area">
+              <svg width="90" height="90" viewBox="0 0 90 90">
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#F5A828" stroke-width="14" stroke-dasharray="120 220" stroke-dashoffset="55" transform="rotate(-90 45 45)"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#2485F0" stroke-width="14" stroke-dasharray="66 220" stroke-dashoffset="-65" transform="rotate(-90 45 45)"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#1A9468" stroke-width="14" stroke-dasharray="33 220" stroke-dashoffset="-131" transform="rotate(-90 45 45)"/>
+                <text x="45" y="49" text-anchor="middle" font-size="10" fill="#3D5449" font-family="Outfit,sans-serif">2.4 GW</text>
+              </svg>
+              <div class="donut-legend-list">
+                <div class="dll-item"><div class="dll-color" style="background:#F5A828"></div><div class="dll-label">Solar</div><div class="dll-val">55%</div></div>
+                <div class="dll-item"><div class="dll-color" style="background:#2485F0"></div><div class="dll-label">Wind</div><div class="dll-val">30%</div></div>
+                <div class="dll-item"><div class="dll-color" style="background:#1A9468"></div><div class="dll-label">Hybrid</div><div class="dll-val">15%</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="dash-bottom">
+        <div class="dash-panel" style="grid-column:span 2;">
+          <div class="dp-head"><div class="dp-title">Recent Lead Signals</div><span class="dp-badge badge-r">12 unreviewed</span></div>
+          <table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="background:var(--bg);">
+              <th style="padding:9px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-l);">Client</th>
+              <th style="padding:9px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-l);">Opportunity</th>
+              <th style="padding:9px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-l);">Capacity</th>
+              <th style="padding:9px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-l);">State</th>
+              <th style="padding:9px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-l);">Time</th>
+              <th style="padding:9px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border-l);">Status</th>
+            </tr></thead>
+            <tbody>
+              <tr style="cursor:pointer;" onmouseover="this.style.background='var(--gp)'" onmouseout="this.style.background=''"><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);font-weight:500;">Arjun Shah</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">OPP-001 · Rajasthan Solar</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">100 MW</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">Rajasthan</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);color:var(--text3);">2m ago</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);"><span style="background:var(--blue-l);color:var(--blue);padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;">New</span></td></tr>
+              <tr style="cursor:pointer;" onmouseover="this.style.background='var(--gp)'" onmouseout="this.style.background=''"><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);font-weight:500;">Meera Patel</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">OPP-003 · MP Hybrid Bundle</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">150 MW</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">MP</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);color:var(--text3);">18m ago</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);"><span style="background:var(--amber-l);color:var(--amber);padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;">IM Sent</span></td></tr>
+              <tr style="cursor:pointer;" onmouseover="this.style.background='var(--gp)'" onmouseout="this.style.background=''"><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);font-weight:500;">Rajan Verma</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">OPP-002 · Kutch Wind</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">200 MW</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);">Gujarat</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);color:var(--text3);">1h ago</td><td style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border-l);"><span style="background:var(--blue-l);color:var(--blue);padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;">New</span></td></tr>
+              <tr style="cursor:pointer;" onmouseover="this.style.background='var(--gp)'" onmouseout="this.style.background=''"><td style="padding:10px 16px;font-size:13px;font-weight:500;">Priya Nair</td><td style="padding:10px 16px;font-size:13px;">OPP-007 · AP Wind Farm</td><td style="padding:10px 16px;font-size:13px;">80 MW</td><td style="padding:10px 16px;font-size:13px;">AP</td><td style="padding:10px 16px;font-size:13px;color:var(--text3);">3h ago</td><td style="padding:10px 16px;font-size:13px;"><span style="background:var(--gl);color:var(--g2);padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;">Closed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dash-panel">
+          <div class="dp-head"><div class="dp-title">Platform Activity</div><span class="dp-badge badge-b">Live feed</span></div>
+          <div class="activity-feed">
+            <div class="af-item"><div class="af-icon" style="background:var(--gl);">🔔</div><div class="af-content"><div class="af-text"><strong>Arjun Shah</strong> expressed interest in OPP-001</div><div class="af-meta">2 min ago · Lead ID: L-2048</div></div><div class="af-dot"></div></div>
+            <div class="af-item"><div class="af-icon" style="background:var(--blue-l);">📄</div><div class="af-content"><div class="af-text">IM dispatched to <strong>Meera Patel</strong> for OPP-003</div><div class="af-meta">18 min ago · IM-0091</div></div><div class="af-dot"></div></div>
+            <div class="af-item"><div class="af-icon" style="background:var(--amber-l);">⬆</div><div class="af-content"><div class="af-text"><strong>SA-07</strong> uploaded AP 80 MW Wind project</div><div class="af-meta">1 hour ago · OPP-048 pending review</div></div></div>
+            <div class="af-item"><div class="af-icon" style="background:var(--gl);">✅</div><div class="af-content"><div class="af-text">OPP-005 connectivity approval obtained</div><div class="af-meta">3 hours ago · RUVNL Stage-II</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPPORTUNITIES TAB -->
+  <div id="ptab-content-opp" class="dash-page" style="display:none;">
+    <div class="inner">
+      <div class="page-header">
+        <div><div class="page-header-title">Project Marketplace</div><div class="page-header-sub">Curated renewable energy opportunities · Sensitive data shown only after admin approval</div></div>
+      </div>
+      <div class="filter-bar">
+        <input class="search-field" type="text" placeholder="🔍  Search projects…" oninput="filterFlash(this.value)">
+        <button class="fchip on" onclick="filterType('all',this)">All</button>
+        <button class="fchip" onclick="filterType('solar',this)">☀ Solar</button>
+        <button class="fchip" onclick="filterType('wind',this)">💨 Wind</button>
+        <button class="fchip" onclick="filterType('hybrid',this)">⚡ Hybrid</button>
+      </div>
+      <div class="flash-grid" id="flash-grid">
+        <div class="flash-card" data-type="solar"><div class="fc-stripe" style="background:linear-gradient(90deg,#C87800,#F5A828)"></div><div class="fc-body"><div class="fc-tag tag-s">☀ Solar</div><div class="fc-title">Rajasthan 100-Acre Solar · OPP-001</div><div class="fc-stats"><div><div class="fcs-label">Capacity</div><div class="fcs-val">70–80 MW</div></div><div><div class="fcs-label">CUF</div><div class="fcs-val">27–30%</div></div><div><div class="fcs-label">PPA Tariff</div><div class="fcs-val">₹2.95–3.10/u</div></div><div><div class="fcs-label">Tenure</div><div class="fcs-val">25 yr</div></div></div><div class="fc-div"></div><div class="fc-meta">Balotra 220kV STU &middot; 4.2 km &middot; Stage-I ✓</div><div style="display:flex;gap:6px;margin-bottom:12px;"><div class="masked">•••• Survey</div><div class="masked">•••• Owner</div></div><button class="interest-btn" onclick="sendInterest(this,'OPP-001')">Interested — contact me ↗</button></div></div>
+        <div class="flash-card" data-type="wind"><div class="fc-stripe" style="background:linear-gradient(90deg,#1246A0,#2485F0)"></div><div class="fc-body"><div class="fc-tag tag-w">💨 Wind</div><div class="fc-title">Kutch Wind Corridor · OPP-002</div><div class="fc-stats"><div><div class="fcs-label">Capacity</div><div class="fcs-val">200 MW</div></div><div><div class="fcs-label">CUF</div><div class="fcs-val">32–35%</div></div><div><div class="fcs-label">PPA Tariff</div><div class="fcs-val">₹3.10–3.30/u</div></div><div><div class="fcs-label">Tenure</div><div class="fcs-val">20 yr</div></div></div><div class="fc-div"></div><div class="fc-meta">GETCO 400kV &middot; 6.8 km &middot; Stage-I & II ✓</div><div style="display:flex;gap:6px;margin-bottom:12px;"><div class="masked">•••• Survey</div><div class="masked">•••• Owner</div></div><button class="interest-btn" onclick="sendInterest(this,'OPP-002')">Interested — contact me ↗</button></div></div>
+        <div class="flash-card" data-type="hybrid"><div class="fc-stripe" style="background:linear-gradient(90deg,var(--g2),var(--g4))"></div><div class="fc-body"><div class="fc-tag tag-h">⚡ Hybrid</div><div class="fc-title">MP Solar + BESS Hybrid · OPP-003</div><div class="fc-stats"><div><div class="fcs-label">Capacity</div><div class="fcs-val">150 MW + 50 MWh</div></div><div><div class="fcs-label">CUF</div><div class="fcs-val">30–34%</div></div><div><div class="fcs-label">PPA Tariff</div><div class="fcs-val">₹3.30–3.50/u</div></div><div><div class="fcs-label">Tenure</div><div class="fcs-val">25 yr</div></div></div><div class="fc-div"></div><div class="fc-meta">MPPTCL CTU &middot; 3.1 km &middot; CTU Stage-I ✓</div><div style="display:flex;gap:6px;margin-bottom:12px;"><div class="masked">•••• Survey</div><div class="masked">•••• Owner</div></div><button class="interest-btn" onclick="sendInterest(this,'OPP-003')">Interested — contact me ↗</button></div></div>
+        <div class="flash-card" data-type="solar"><div class="fc-stripe" style="background:linear-gradient(90deg,#C87800,#F5A828)"></div><div class="fc-body"><div class="fc-tag tag-s">☀ Solar</div><div class="fc-title">AP Kurnool Solar Cluster · OPP-007</div><div class="fc-stats"><div><div class="fcs-label">Capacity</div><div class="fcs-val">120 MW</div></div><div><div class="fcs-label">CUF</div><div class="fcs-val">26–28%</div></div><div><div class="fcs-label">PPA Tariff</div><div class="fcs-val">₹2.80–2.95/u</div></div><div><div class="fcs-label">Tenure</div><div class="fcs-val">20 yr</div></div></div><div class="fc-div"></div><div class="fc-meta">APTRANSCO 220kV &middot; 5.5 km &middot; Stage-I ✓</div><div style="display:flex;gap:6px;margin-bottom:12px;"><div class="masked">•••• Survey</div><div class="masked">•••• Owner</div></div><button class="interest-btn" onclick="sendInterest(this,'OPP-007')">Interested — contact me ↗</button></div></div>
+        <div class="flash-card" data-type="wind"><div class="fc-stripe" style="background:linear-gradient(90deg,#1246A0,#2485F0)"></div><div class="fc-body"><div class="fc-tag tag-w">💨 Wind</div><div class="fc-title">Karnataka Wind Farm · OPP-012</div><div class="fc-stats"><div><div class="fcs-label">Capacity</div><div class="fcs-val">80 MW</div></div><div><div class="fcs-label">CUF</div><div class="fcs-val">33–36%</div></div><div><div class="fcs-label">PPA Tariff</div><div class="fcs-val">₹3.15–3.35/u</div></div><div><div class="fcs-label">Tenure</div><div class="fcs-val">25 yr</div></div></div><div class="fc-div"></div><div class="fc-meta">KPTCL 400kV &middot; 7.2 km &middot; Stage-II ✓</div><div style="display:flex;gap:6px;margin-bottom:12px;"><div class="masked">•••• Survey</div><div class="masked">•••• Owner</div></div><button class="interest-btn" onclick="sendInterest(this,'OPP-012')">Interested — contact me ↗</button></div></div>
+        <div class="flash-card" data-type="hybrid"><div class="fc-stripe" style="background:linear-gradient(90deg,var(--g2),var(--g4))"></div><div class="fc-body"><div class="fc-tag tag-h">⚡ Hybrid</div><div class="fc-title">Rajasthan Wind-Solar Hybrid · OPP-015</div><div class="fc-stats"><div><div class="fcs-label">Capacity</div><div class="fcs-val">300 MW</div></div><div><div class="fcs-label">CUF</div><div class="fcs-val">35–38%</div></div><div><div class="fcs-label">PPA Tariff</div><div class="fcs-val">₹3.20–3.40/u</div></div><div><div class="fcs-label">Tenure</div><div class="fcs-val">25 yr</div></div></div><div class="fc-div"></div><div class="fc-meta">RUVNL 765kV &middot; 8.5 km &middot; CTU approval ✓</div><div style="display:flex;gap:6px;margin-bottom:12px;"><div class="masked">•••• Survey</div><div class="masked">•••• Owner</div></div><button class="interest-btn" onclick="sendInterest(this,'OPP-015')">Interested — contact me ↗</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN TAB -->
+  <div id="ptab-content-admin" class="dash-page" style="display:none;">
+    <div class="inner">
+      <div class="page-header"><div><div class="page-header-title">Admin Panel</div><div class="page-header-sub">Manage leads, reveal sensitive data, oversee sub-aggregator submissions</div></div></div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="kpi-card"><div class="kpi-accent red"></div><div class="kpi-label">Pending Leads</div><div class="kpi-val">12</div><div class="kpi-badge badge-r">Needs review</div></div>
+        <div class="kpi-card"><div class="kpi-accent gold"></div><div class="kpi-label">IMs Sent</div><div class="kpi-val">34</div><div class="kpi-sub">This quarter</div></div>
+        <div class="kpi-card"><div class="kpi-accent blue"></div><div class="kpi-label">Unmasked Accesses</div><div class="kpi-val">8</div><div class="kpi-sub">Today</div></div>
+        <div class="kpi-card"><div class="kpi-accent"></div><div class="kpi-label">Sub-Aggregators</div><div class="kpi-val">16</div><div class="kpi-badge badge-g">Active</div></div>
+      </div>
+      <div class="admin-grid-layout" style="margin-top:20px;">
+        <div class="dash-panel">
+          <div class="dp-head"><div class="dp-title">Lead Signals</div><span class="dp-badge badge-r">12 new</span></div>
+          <div class="lead-list-item" onclick="showUnmasked('Arjun Shah','OPP-001','Rajasthan 100-Ac Solar')"><div class="l-av" style="background:var(--blue-l);color:var(--blue);">AS</div><div class="l-info"><div class="l-name">Arjun Shah · <span style="font-weight:400;color:var(--text2)">OPP-001</span></div><div class="l-opp">Interested in Rajasthan 100-Ac Solar</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><span class="l-time">2m ago</span><div class="pulse-dot"></div></div></div>
+          <div class="lead-list-item" onclick="showUnmasked('Meera Patel','OPP-003','MP Hybrid Bundle')"><div class="l-av" style="background:var(--gl);color:var(--g2);">MP</div><div class="l-info"><div class="l-name">Meera Patel · <span style="font-weight:400;color:var(--text2)">OPP-003</span></div><div class="l-opp">Interested in MP Solar + BESS Hybrid</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><span class="l-time">18m ago</span><div class="pulse-dot"></div></div></div>
+          <div class="lead-list-item" onclick="showUnmasked('Rajan Verma','OPP-002','Kutch Wind Corridor')"><div class="l-av" style="background:var(--amber-l);color:var(--amber);">RV</div><div class="l-info"><div class="l-name">Rajan Verma · <span style="font-weight:400;color:var(--text2)">OPP-002</span></div><div class="l-opp">Interested in Kutch Wind Corridor</div></div><span class="l-time">1h ago</span></div>
+          <div class="lead-list-item" onclick="showUnmasked('Priya Nair','OPP-007','AP Kurnool Solar')"><div class="l-av" style="background:var(--blue-l);color:var(--blue);">PN</div><div class="l-info"><div class="l-name">Priya Nair · <span style="font-weight:400;color:var(--text2)">OPP-007</span></div><div class="l-opp">Interested in AP Kurnool Solar Cluster</div></div><span class="l-time">3h ago</span></div>
+        </div>
+        <div class="dash-panel">
+          <div class="dp-head"><div class="dp-title" id="um-panel-title">Select a lead to reveal</div><span class="dp-badge badge-r" id="um-admin-badge" style="display:none;">Admin only</span></div>
+          <div class="unmasked-area" id="um-content"><div class="um-empty">Click a lead to reveal sensitive project data</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD TAB -->
+  <div id="ptab-content-upload" style="display:none;">
+    <div class="upload-page-wrap">
+      <div class="up-header">
+        <div class="page-header-title">Upload New Project Opportunity</div>
+        <div class="page-header-sub" style="margin-top:4px;">Sensitive fields are automatically separated and encrypted. Public data appears on flash cards; private data is Admin-only.</div>
+      </div>
+      <div class="up-form-section">
+        <div class="up-sec-title">🌍 Land Details</div>
+        <div class="up-grid">
+          <div class="up-field"><label>State / Region <span class="chip-pub">public</span></label><input type="text" placeholder="e.g. Rajasthan" value="Rajasthan"></div>
+          <div class="up-field"><label>Area (Acres) <span class="chip-pub">public</span></label><input type="text" placeholder="e.g. 100" value="100"></div>
+          <div class="up-field"><label>Village / Survey Nos. <span class="chip-priv">private</span></label><input type="text" value="Balotra, Khasra 342/A, 343/B"></div>
+          <div class="up-field"><label>Owner Name <span class="chip-priv">private</span></label><input type="text" value="Ramesh Choudhary"></div>
+        </div>
+      </div>
+      <div class="up-form-section">
+        <div class="up-sec-title">⚡ Connectivity</div>
+        <div class="up-grid">
+          <div class="up-field"><label>PoC Substation <span class="chip-pub">public</span></label><input type="text" value="Balotra 220kV STU"></div>
+          <div class="up-field"><label>Distance to Substation <span class="chip-pub">public</span></label><input type="text" value="4.2 km"></div>
+          <div class="up-field"><label>Application ID <span class="chip-priv">private</span></label><input type="text" value="RUVNL-LTOA-2024-7821"></div>
+          <div class="up-field"><label>Approval Stage <span class="chip-priv">private</span></label><input type="text" value="Stage-I obtained"></div>
+        </div>
+      </div>
+      <div class="up-form-section">
+        <div class="up-sec-title">📋 EPC / PPA</div>
+        <div class="up-grid">
+          <div class="up-field"><label>Target CUF <span class="chip-pub">public</span></label><input type="text" value="27–30%"></div>
+          <div class="up-field"><label>PPA Tariff Range <span class="chip-pub">public</span></label><input type="text" value="₹2.95–3.10 / unit"></div>
+          <div class="up-field"><label>BOQ Reference <span class="chip-priv">private</span></label><input type="text" value="BOQ_RAJ_100AC_v2.xlsx"></div>
+          <div class="up-field"><label>Off-taker Credit Rating <span class="chip-priv">private</span></label><input type="text" value="AA (CARE, 2024)"></div>
+        </div>
+        <div class="up-actions">
+          <button class="up-btn-primary" onclick="simulatePublish()">Publish Flash Card</button>
+          <button class="up-btn-sec">Save as Draft</button>
+        </div>
+        <div class="up-confirm" id="up-confirm">✓ Flash card published. Sensitive fields stored securely. Sub-aggregator notified.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PMC SERVICES PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-pmc">
+  <div class="svc-hero">
+    <div class="svc-hero-inner">
+      <div class="svc-hero-eyebrow">Advisory Services</div>
+      <h1 class="svc-hero-title">Project Management<br>Consultancy (PMC)</h1>
+      <p class="svc-hero-desc">Energica Infra provides comprehensive PMC services for solar, wind, and hybrid renewable energy projects across India — from feasibility studies and DPR preparation through EPC management, commissioning, and quality assurance.</p>
+    </div>
+  </div>
+  <div class="svc-body">
+    <div class="svc-content-grid">
+      <div class="svc-intro-text">
+        <p>Our PMC practice covers the complete project lifecycle for renewable energy developments. We bring together technical expertise, regulatory knowledge, and project management discipline to ensure your project is delivered on time, within budget, and to specification.</p>
+        <p>With deep experience across RUVNL, GETCO, MPPTCL, APTRANSCO, and KPTCL jurisdictions, Energica Infra navigates state-specific regulatory processes — LTOA, CTU/STU clearances, environmental approvals, and grid connectivity — on behalf of developers and investors.</p>
+        <p>Our PMC mandate typically commences at the pre-bid stage and continues through commercial operations date (COD), with optional engagement for O&M oversight and performance monitoring in subsequent years.</p>
+      </div>
+      <div class="svc-highlights">
+        <div class="svc-hl-card"><div class="svc-hl-icon">📐</div><div><div class="svc-hl-title">Feasibility & DPR</div><div class="svc-hl-desc">Site assessment, solar/wind resource analysis, techno-economic modelling, and Detailed Project Report preparation to bankable standards.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">📋</div><div><div class="svc-hl-title">Bid & Contract Management</div><div class="svc-hl-desc">Technical specifications, RfP/RfQ preparation, tender evaluation, vendor qualification, and EPC contract negotiation and award.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">🔬</div><div><div class="svc-hl-title">Quality Assurance & Testing</div><div class="svc-hl-desc">Independent quality inspections, factory acceptance testing, site acceptance testing, commissioning oversight, and performance ratio validation.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">📊</div><div><div class="svc-hl-title">Progress Certification</div><div class="svc-hl-desc">Milestone-linked progress certification, invoice verification, and compliance reporting to lenders, investors, and government authorities.</div></div></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="svc-scope-title">Full Scope of PMC Services</div>
+    <div class="scope-list">
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Total Project Management from concept to COD</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Feasibility studies and resource assessment (solar/wind)</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Detailed Project Report (DPR) preparation to lender standards</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Preparation of bid documents and technical specifications</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Tender evaluation and EPC contract finalization</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Review engineering and approval of contractor drawings</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Testing, commissioning, and quality assurance</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Post-COD performance monitoring and O&M oversight</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">LTOA, CTU/STU, and grid connectivity facilitation</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Environmental and forest clearance coordination</div></div>
+    </div>
+    <div class="divider"></div>
+    <div class="svc-scope-title">Our PMC Process</div>
+    <div class="process-steps">
+      <div class="ps-step"><div class="ps-num">1</div><div class="ps-title">Site & Feasibility</div><div class="ps-desc">Resource assessment, land diligence, grid study, and initial DPR</div></div>
+      <div class="ps-step"><div class="ps-num">2</div><div class="ps-title">Bid Management</div><div class="ps-desc">RfP preparation, vendor qualification, tender evaluation, EPC award</div></div>
+      <div class="ps-step"><div class="ps-num">3</div><div class="ps-title">Construction Oversight</div><div class="ps-desc">QA/QC, progress certification, drawing approvals, milestone tracking</div></div>
+      <div class="ps-step"><div class="ps-num">4</div><div class="ps-title">Commissioning & COD</div><div class="ps-desc">SAT, PAC, performance ratio validation, regulatory handover</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PROJECT FINANCE PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-finance">
+  <div class="svc-hero" style="background:linear-gradient(130deg,#0F3460 0%,#1A5FA8 100%);">
+    <div class="svc-hero-inner">
+      <div class="svc-hero-eyebrow" style="color:#7EB8F7;">Financial Advisory</div>
+      <h1 class="svc-hero-title">Project Finance &<br>Capital Structuring</h1>
+      <p class="svc-hero-desc">Energica Infra structures and facilitates debt and equity financing for renewable energy projects — from term loans and green bonds to co-investments, bridging finance, and syndicated facilities across India's capital markets.</p>
+    </div>
+  </div>
+  <div class="svc-body">
+    <div class="svc-content-grid">
+      <div class="svc-intro-text">
+        <p>Energica Infra's project finance practice provides end-to-end financial advisory for renewable energy developers. We identify, structure, and facilitate the optimal mix of debt and equity to bring projects to financial close efficiently.</p>
+        <p>Our relationships span DFIs (PFC, REC, IREDA), public sector banks, private lenders, NBFCs, and international development finance institutions. We also facilitate equity co-investments from institutional investors, family offices, and strategic partners seeking exposure to India's energy transition.</p>
+        <p>We assist clients in preparing bankable financial models, information memoranda, and lender presentations — and represent them through due diligence, term sheet negotiation, and financial close.</p>
+      </div>
+      <div class="svc-highlights">
+        <div class="svc-hl-card"><div class="svc-hl-icon">🏛️</div><div><div class="svc-hl-title">Debt Advisory</div><div class="svc-hl-desc">Term loans, green bonds, and project finance facilities from DFIs, PSBs, NBFCs, and international lenders — structured for optimal cost and tenor.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">💼</div><div><div class="svc-hl-title">Equity & Co-Investment</div><div class="svc-hl-desc">Connecting renewable developers with institutional equity partners, family offices, and strategic investors seeking India's energy transition opportunity.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">📈</div><div><div class="svc-hl-title">Financial Modelling</div><div class="svc-hl-desc">Bankable financial models, IRR/DSCR analysis, sensitivity testing, and project economics presentations prepared to lender and investor standards.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">🤝</div><div><div class="svc-hl-title">Financial Close Support</div><div class="svc-hl-desc">Due diligence coordination, term sheet negotiation, conditions precedent management, and documentation support through to financial close.</div></div></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="svc-scope-title">Finance Solutions We Facilitate</div>
+    <div class="scope-list">
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">PFC / REC / IREDA term loans and refinancing</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Green bonds and sustainable finance instruments</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Private equity and institutional co-investments</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Mezzanine and bridge financing solutions</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">International DFI and development bank facilities</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Syndicated loan structuring and placement</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Bankable financial model preparation</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Information Memorandum and lender IM preparation</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     M&A ADVISORY PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-ma">
+  <div class="svc-hero" style="background:linear-gradient(130deg,#3D1C00 0%,#7D5A00 100%);">
+    <div class="svc-hero-inner">
+      <div class="svc-hero-eyebrow" style="color:#F5C842;">Transaction Advisory</div>
+      <h1 class="svc-hero-title">Mergers & Acquisitions<br>Advisory</h1>
+      <p class="svc-hero-desc">Energica Infra advises on buy-side and sell-side renewable energy asset transactions — from single-project acquisitions to platform consolidations, stake sales, and cross-border deals across India's growing clean energy sector.</p>
+    </div>
+  </div>
+  <div class="svc-body">
+    <div class="svc-content-grid">
+      <div class="svc-intro-text">
+        <p>India's renewable energy sector is undergoing rapid consolidation. Energica Infra's M&A advisory practice helps developers monetise assets, enables investors to acquire quality portfolios, and facilitates strategic partnerships that accelerate project development.</p>
+        <p>We provide comprehensive transaction advisory — from target identification and valuation through due diligence, negotiation, and deal closure. Our understanding of renewable project economics, regulatory frameworks, and lender requirements ensures transactions are structured for optimal value and minimal completion risk.</p>
+        <p>Whether you are a developer seeking an exit, an IPP consolidating a portfolio, or an international investor entering India's renewables market, Energica Infra brings the sector expertise and transaction experience to close the deal.</p>
+      </div>
+      <div class="svc-highlights">
+        <div class="svc-hl-card"><div class="svc-hl-icon">🔍</div><div><div class="svc-hl-title">Buy-Side Advisory</div><div class="svc-hl-desc">Target identification, valuation, technical and commercial due diligence, bid structuring, and negotiation support for renewable asset acquisitions.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">📤</div><div><div class="svc-hl-title">Sell-Side Advisory</div><div class="svc-hl-desc">Asset positioning, teaser and IM preparation, investor outreach, bid management, and deal closure for renewable project exits and stake sales.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">⚖️</div><div><div class="svc-hl-title">Valuation & Modelling</div><div class="svc-hl-desc">DCF, NAV, and comparable transaction valuation of renewable energy assets, incorporating generation risk, PPA terms, and regulatory exposure.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">🌐</div><div><div class="svc-hl-title">Cross-Border Transactions</div><div class="svc-hl-desc">Advisory for international investors entering India's renewables market — navigating FDI regulations, FEMA compliance, and local partner structuring.</div></div></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="svc-scope-title">Our M&A Capabilities</div>
+    <div class="scope-list">
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Buy-side and sell-side mandate execution</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Renewable asset and platform valuation</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Technical, commercial, and legal due diligence</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Information Memorandum and teaser preparation</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Investor identification and outreach</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Term sheet and SPA negotiation support</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Cross-border FDI structuring and FEMA compliance</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Post-acquisition integration advisory</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BESS / ENERGY SIZING PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-bess">
+  <div class="svc-hero" style="background:linear-gradient(130deg,#0A1E2A 0%,#0E3D52 100%);">
+    <div class="svc-hero-inner">
+      <div class="svc-hero-eyebrow" style="color:#4FC3F7;">Energy Storage Advisory</div>
+      <h1 class="svc-hero-title">BESS & Energy<br>Storage Sizing</h1>
+      <p class="svc-hero-desc">Energica Infra provides Battery Energy Storage System (BESS) advisory — from techno-economic analysis and optimal sizing through technology selection, grid code compliance, and integration with solar and wind assets across India's hybrid energy landscape.</p>
+    </div>
+  </div>
+  <div class="svc-body">
+    <div class="svc-content-grid">
+      <div class="svc-intro-text">
+        <p>India's push for 24x7 renewable power supply and the growth of Round-the-Clock (RTC) and hybrid tenders have made Battery Energy Storage Systems central to project design. Energica Infra's BESS advisory helps developers and investors optimise storage configurations for maximum commercial value.</p>
+        <p>Our team conducts detailed load flow analysis, generation dispatch modelling, and round-trip efficiency assessment to recommend the optimal battery chemistry, capacity (MWh), and power rating (MW) for each project configuration. We evaluate LFP, NMC, and flow battery technologies against project-specific cost, cycle life, and safety requirements.</p>
+        <p>We support clients through CERC/SERC grid code compliance, ISTS waiver applications for hybrid BESS projects, and integration with SCADA and energy management systems for real-time dispatch optimisation.</p>
+      </div>
+      <div class="svc-highlights">
+        <div class="svc-hl-card"><div class="svc-hl-icon">🔋</div><div><div class="svc-hl-title">Optimal BESS Sizing</div><div class="svc-hl-desc">Techno-economic modelling to determine the optimal MWh capacity, C-rate, and duration for your specific project configuration and offtake requirements.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">⚡</div><div><div class="svc-hl-title">Hybrid System Design</div><div class="svc-hl-desc">Integrated solar + wind + BESS design with dispatch optimisation to maximise CUF, meet scheduling obligations, and comply with ISTS/PGCIL requirements.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">🔬</div><div><div class="svc-hl-title">Technology Evaluation</div><div class="svc-hl-desc">Independent evaluation of LFP, NMC, sodium-ion, and flow battery technologies — covering cycle life, round-trip efficiency, CAPEX/OPEX, and safety.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">📡</div><div><div class="svc-hl-title">Grid Code & Compliance</div><div class="svc-hl-desc">CERC/SERC grid code compliance advisory, ISTS waiver applications for hybrid projects, and energy management system integration support.</div></div></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="svc-scope-title">BESS Advisory Scope</div>
+    <div class="scope-list">
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">BESS sizing and techno-economic analysis</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Hybrid (Solar + Wind + BESS) system design</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Battery technology selection and vendor evaluation</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Round-trip efficiency and degradation modelling</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">ISTS waiver applications for hybrid BESS projects</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">CERC/SERC grid code compliance advisory</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Energy management system (EMS) integration</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Dispatch optimisation and revenue modelling</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCADA / O&M PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-scada">
+  <div class="svc-hero" style="background:linear-gradient(130deg,#1A0A2E 0%,#3D1F6E 100%);">
+    <div class="svc-hero-inner">
+      <div class="svc-hero-eyebrow" style="color:#B39DDB;">Operations Advisory</div>
+      <h1 class="svc-hero-title">SCADA & O&M<br>Advisory Services</h1>
+      <p class="svc-hero-desc">Energica Infra provides SCADA integration, remote monitoring, and O&M advisory for solar, wind, and hybrid renewable projects — combining real-time performance analytics with preventive maintenance protocols to maximise generation and asset life.</p>
+    </div>
+  </div>
+  <div class="svc-body">
+    <div class="svc-content-grid">
+      <div class="svc-intro-text">
+        <p>Operational excellence is what separates a performing asset from an underperforming one. Energica Infra's SCADA and O&M advisory practice helps plant operators and asset owners implement robust monitoring frameworks and maintenance protocols that protect generation yield and financial returns.</p>
+        <p>We design and implement SCADA architectures that consolidate data from inverters, weather stations, MFMs, and grid meters into a unified operational view — enabling real-time performance tracking, fault detection, and automated alerts. Our dashboards are designed for both plant operators and remote asset managers.</p>
+        <p>On the O&M side, we develop customised maintenance schedules, performance benchmarks, and KPI frameworks. We also conduct independent generation audits and performance ratio assessments for lenders, investors, and asset owners seeking objective performance verification.</p>
+      </div>
+      <div class="svc-highlights">
+        <div class="svc-hl-card"><div class="svc-hl-icon">📡</div><div><div class="svc-hl-title">SCADA Architecture</div><div class="svc-hl-desc">Design and implementation of SCADA systems integrating inverters, trackers, MFMs, and grid meters — with real-time dashboards and automated alarm management.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">📊</div><div><div class="svc-hl-title">Performance Analytics</div><div class="svc-hl-desc">Generation performance benchmarking, specific yield analysis, performance ratio tracking, and loss cascade analysis to identify and rectify yield gaps.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">🔧</div><div><div class="svc-hl-title">Preventive Maintenance</div><div class="svc-hl-desc">O&M framework design covering preventive maintenance schedules, spares management, contractor oversight, and HSE compliance for plant operators.</div></div></div>
+        <div class="svc-hl-card"><div class="svc-hl-icon">🔎</div><div><div class="svc-hl-title">Independent Audits</div><div class="svc-hl-desc">Third-party generation audits and performance ratio assessments for lenders, institutional investors, and asset owners seeking independent verification.</div></div></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="svc-scope-title">SCADA & O&M Scope</div>
+    <div class="scope-list">
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">SCADA system design and implementation advisory</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Remote monitoring platform integration</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Real-time performance dashboards and KPI tracking</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Fault detection, alarm management, and RCA support</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">O&M framework and preventive maintenance schedules</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Performance ratio and specific yield analysis</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Independent generation and performance audits</div></div>
+      <div class="scope-item"><div class="scope-check">✓</div><div class="scope-text">Long-term O&M contract evaluation and oversight</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-page">
+    <div class="inner">
+      <div style="text-align:center;margin-bottom:52px;">
+        <div class="section-eyebrow" style="justify-content:center;">Get in Touch</div>
+        <h1 class="section-title" style="margin-bottom:0;">Let's discuss your<br>renewable energy project.</h1>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-section">
+          <div class="cf-title">Send us a message</div>
+          <div class="cf-sub">We typically respond within one business day. For urgent matters, please call directly.</div>
+          <div class="cf-field"><label class="cf-label">Full Name</label><input class="cf-input" type="text" placeholder="Your name"></div>
+          <div class="cf-field"><label class="cf-label">Company</label><input class="cf-input" type="text" placeholder="Organisation name"></div>
+          <div class="cf-field"><label class="cf-label">Email Address</label><input class="cf-input" type="email" placeholder="you@company.com"></div>
+          <div class="cf-field"><label class="cf-label">Service Interest</label>
+            <select class="cf-input" style="cursor:pointer;">
+              <option>Select a service…</option>
+              <option>PMC Services</option>
+              <option>Project Finance</option>
+              <option>M&A Advisory</option>
+              <option>BESS / Energy Sizing</option>
+              <option>SCADA / O&M Advisory</option>
+              <option>Deal Platform / Investor Access</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="cf-field"><label class="cf-label">Message</label><textarea class="cf-input cf-textarea" placeholder="Tell us about your project — technology type, capacity, state, and how we can help…"></textarea></div>
+          <button class="cf-btn" onclick="submitContactForm(this)">Send Message →</button>
+          <div id="cf-success" style="display:none;margin-top:14px;padding:12px 16px;background:var(--gl);color:var(--g2);border-radius:var(--r-sm);font-size:13px;border:1px solid rgba(26,148,104,0.2);">✓ Message sent! Our team will reach out within one business day.</div>
+        </div>
+        <div class="contact-info">
+          <div class="ci-card">
+            <div class="ci-title">Energica Infra Pvt. Ltd.</div>
+            <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-info-title">Office Address</div><div class="ci-info-val">Ahmedabad, Gujarat, India</div></div></div>
+            <div class="ci-item"><div class="ci-icon">✉️</div><div><div class="ci-info-title">Email</div><div class="ci-info-val">admin@energicainfra.com</div></div></div>
+            <div class="ci-item"><div class="ci-icon">🌐</div><div><div class="ci-info-title">Website</div><div class="ci-info-val">www.energicainfra.com</div></div></div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border-l);border-radius:var(--r);padding:24px;">
+            <div style="font-size:14px;font-weight:600;color:var(--text1);margin-bottom:16px;">Services we offer</div>
+            <div style="display:flex;flex-direction:column;gap:9px;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);"><span style="color:var(--g3);">✓</span>PMC & Project Management</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);"><span style="color:var(--g3);">✓</span>Project Finance Advisory</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);"><span style="color:var(--g3);">✓</span>M&A Transaction Advisory</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);"><span style="color:var(--g3);">✓</span>BESS & Energy Sizing</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);"><span style="color:var(--g3);">✓</span>SCADA & O&M Advisory</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);"><span style="color:var(--g3);">✓</span>Renewable Deal Platform</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Page navigation ──
+function showPage(name, navBtn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  if (navBtn) navBtn.classList.add('active');
+  window.scrollTo(0, 0);
+  if (name === 'portfolio') buildBarChart();
+  // set date
+  const d = new Date();
+  const el = document.getElementById('dash-date-line');
+  if (el) el.textContent = 'Live overview · ' + d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+
+// ── Portfolio sub-tabs ──
+function switchPortfolioTab(tab, btn) {
+  ['dash','opp','admin','upload'].forEach(t => {
+    const c = document.getElementById('ptab-content-' + t);
+    if(c) c.style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('#page-portfolio .nav-items .nav-item, #page-portfolio > div:first-child .nav-item').forEach(b => b.classList.remove('active'));
+  // target the sub-tabs
+  document.querySelectorAll('[id^="ptab-"]').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.getElementById('ptab-' + tab);
+  if(activeBtn) activeBtn.classList.add('active');
+  if(tab === 'dash') buildBarChart();
+}
+
+// ── Bar chart ──
+const chartData = [
+  { q:'Q1', s:110, w:60, h:30 },
+  { q:'Q2', s:145, w:80, h:45 },
+  { q:'Q3', s:180, w:100, h:60 },
+  { q:'Q4', s:210, w:130, h:80 },
+];
+function buildBarChart() {
+  const wrap = document.getElementById('main-bar-chart');
+  if(!wrap) return;
+  const max = 210;
+  wrap.innerHTML = chartData.map(d => `
+    <div class="bcw-group">
+      <div class="bcw-bars">
+        <div class="bcw-bar bar-sol" style="height:${(d.s/max)*160}px" title="Solar ${d.s} MW"></div>
+        <div class="bcw-bar bar-win" style="height:${(d.w/max)*160}px" title="Wind ${d.w} MW"></div>
+        <div class="bcw-bar bar-hyb" style="height:${(d.h/max)*160}px" title="Hybrid ${d.h} MW"></div>
+      </div>
+      <div class="bcw-label">${d.q}</div>
+    </div>
+  `).join('');
+}
+
+// ── Marketplace ──
+function filterFlash(q) {
+  document.querySelectorAll('.flash-card').forEach(c => {
+    c.style.display = c.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+function filterType(type, btn) {
+  document.querySelectorAll('.fchip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.flash-card').forEach(c => {
+    c.style.display = (type === 'all' || c.dataset.type === type) ? '' : 'none';
+  });
+}
+function sendInterest(btn, id) {
+  btn.textContent = '✓ Request sent — admin will contact you';
+  btn.classList.add('sent');
+  btn.disabled = true;
+}
+
+// ── Admin unmasked ──
+const datasets = {
+  'OPP-001':{'Owner':'Ramesh Choudhary','Khasra nos.':'342/A, 343/B, 344/C · Balotra','Title deed':'deed_balotra_2019.pdf','Commission':'1.8% sub-agg / 0.5% platform','App ID':'RUVNL-LTOA-2024-7821','Approval':'Stage-I ✓ · Stage-II pending','BOQ ref':'BOQ_RAJ_100AC_v2.xlsx','Off-taker credit':'AA (CARE, Oct 2024)'},
+  'OPP-002':{'Owner':'Harbhajan Singh Dhaliwal','Survey nos.':'Survey 811/2, 812/1 · Bhuj taluka','Title deed':'deed_kutch_wind_2021.pdf','Commission':'2.1% sub-agg / 0.5% platform','App ID':'GETCO-LTOA-2024-4412','Approval':'Stage-I & II ✓','BOQ ref':'BOQ_KUT_WIND_v1.xlsx','Off-taker credit':'A+ (ICRA, Sep 2024)'},
+  'OPP-003':{'Owner':'Suresh Yadav (Consortium of 6)','Survey nos.':'Survey 220–228, Sagar district','Title deed':'deed_mp_hybrid_2023.pdf','Commission':'1.5% sub-agg / 0.5% platform','App ID':'MPPTCL-CTU-2023-1901','Approval':'CTU Stage-I · BESS waiver filed','BOQ ref':'BOQ_MP_HYBRID_v3.xlsx','Off-taker credit':'AAA (CRISIL, Aug 2024)'},
+  'OPP-007':{'Owner':'Venkata Raju Farms Ltd.','Survey nos.':'Survey 44/3, 45/1, Kurnool dist.','Title deed':'deed_ap_kurnool_2022.pdf','Commission':'1.6% sub-agg / 0.5% platform','App ID':'APTRANSCO-LTOA-2024-0812','Approval':'Stage-I ✓ · Stage-II applied','BOQ ref':'BOQ_AP_SOLAR_v2.xlsx','Off-taker credit':'AA- (CARE, Jul 2024)'},
+};
+function showUnmasked(name, id, oppName) {
+  document.getElementById('um-panel-title').textContent = name + ' · ' + id;
+  document.getElementById('um-admin-badge').style.display = '';
+  const data = datasets[id] || {};
+  let html = '<div class="um-title">Sensitive Data — ' + oppName + '</div>';
+  for(const [k,v] of Object.entries(data)) {
+    html += `<div class="um-row"><span class="um-key">${k}</span><span class="um-val">${v}</span></div>`;
+  }
+  document.getElementById('um-content').innerHTML = html;
+}
+
+// ── Upload ──
+function simulatePublish() {
+  const el = document.getElementById('up-confirm');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 4000);
+}
+
+// ── Contact form ──
+function submitContactForm(btn) {
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('cf-success').style.display = 'block';
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = 'var(--g3)';
+  }, 1000);
+}
+</script>
+</body>
+</html>
